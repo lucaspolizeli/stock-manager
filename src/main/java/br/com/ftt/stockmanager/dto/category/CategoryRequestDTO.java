@@ -1,4 +1,4 @@
-package br.com.ftt.stockmanager.controller.dto.category;
+package br.com.ftt.stockmanager.dto.category;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;

@@ -1,6 +1,5 @@
-package br.com.ftt.stockmanager.controller.dto.formException;
+package br.com.ftt.stockmanager.dto.formException;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package br.com.ftt.stockmanager.exceptions;
 
-import br.com.ftt.stockmanager.controller.dto.formException.FormExceptionDTO;
-import br.com.ftt.stockmanager.controller.dto.formException.FormExceptionResponseDTO;
+import br.com.ftt.stockmanager.dto.formException.FormExceptionDTO;
+import br.com.ftt.stockmanager.dto.formException.FormExceptionResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice

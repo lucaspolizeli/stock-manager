@@ -1,7 +1,7 @@
 package br.com.ftt.stockmanager.controller;
 
-import br.com.ftt.stockmanager.controller.dto.category.CategoryRequestDTO;
-import br.com.ftt.stockmanager.controller.dto.category.CategoryResponseDTO;
+import br.com.ftt.stockmanager.dto.category.CategoryRequestDTO;
+import br.com.ftt.stockmanager.dto.category.CategoryResponseDTO;
 import br.com.ftt.stockmanager.model.Category;
 import br.com.ftt.stockmanager.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.ws.rs.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +20,7 @@ public class CategoryController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public List<CategoryResponseDTO> index(){
         var category = categoryRepository.findAll();
 
@@ -31,12 +31,17 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public CategoryResponseDTO show(@PathVariable("id") Long id) {
-        var category = categoryRepository.getOne(id);
-        return CategoryResponseDTO.parse(category);
+    public ResponseEntity<CategoryResponseDTO> show(@PathVariable("id") Long id) {
+        var category = categoryRepository.findById(id);
+        if(!category.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(CategoryResponseDTO.parse(category.get()));
     }
 
-    @PostMapping("/")
+    @Transactional
+    @PostMapping
     public ResponseEntity<CategoryResponseDTO> store(@RequestBody @Valid CategoryRequestDTO categoryToInsert, UriComponentsBuilder uriComponentsBuilder) {
         var category = new Category();
 
@@ -52,19 +57,35 @@ public class CategoryController {
         return ResponseEntity.created(uri).body(CategoryResponseDTO.parse(category));
     }
 
+    @Transactional
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody CategoryRequestDTO categoryToUpdate) throws Exception {
+    public ResponseEntity<CategoryResponseDTO> update(@PathVariable Long id, @RequestBody CategoryRequestDTO categoryToUpdate) {
         var hasCategory = categoryRepository.findById(id);
 
-        if(hasCategory.isPresent()) {
-            var category = hasCategory.get();
-
-            category.setName(categoryToUpdate.getName());
-            category.setDescription(categoryToUpdate.getDescription());
-
-            categoryRepository.save(category);
-        } else {
-            throw new Exception("Categoria não encontrada");
+        if(!hasCategory.isPresent()) {
+            return ResponseEntity.notFound().build();
         }
+
+        var category = hasCategory.get();
+
+        category.setName(categoryToUpdate.getName());
+        category.setDescription(categoryToUpdate.getDescription());
+
+        categoryRepository.save(category);
+
+        return ResponseEntity.ok(CategoryResponseDTO.parse(category));
+    }
+
+    @Transactional
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> destroy(@PathVariable Long id) {
+        var hasCategory = categoryRepository.findById(id);
+
+        if(!hasCategory.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        categoryRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }
