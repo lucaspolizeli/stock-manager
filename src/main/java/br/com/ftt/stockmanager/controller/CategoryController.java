@@ -5,8 +5,11 @@ import br.com.ftt.stockmanager.controller.dto.category.CategoryResponseDTO;
 import br.com.ftt.stockmanager.model.Category;
 import br.com.ftt.stockmanager.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import javax.ws.rs.Path;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,13 +37,19 @@ public class CategoryController {
     }
 
     @PostMapping("/")
-    public void store(@RequestBody CategoryRequestDTO categoryToInsert) {
+    public ResponseEntity<CategoryResponseDTO> store(@RequestBody @Valid CategoryRequestDTO categoryToInsert, UriComponentsBuilder uriComponentsBuilder) {
         var category = new Category();
 
         category.setName(categoryToInsert.getName());
         category.setDescription(categoryToInsert.getDescription());
 
         categoryRepository.save(category);
+
+        var uri = uriComponentsBuilder
+                .path("/category/{id}")
+                .buildAndExpand(category.getId())
+                .toUri();
+        return ResponseEntity.created(uri).body(CategoryResponseDTO.parse(category));
     }
 
     @PutMapping("/{id}")
