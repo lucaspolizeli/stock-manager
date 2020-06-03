@@ -2,6 +2,7 @@ package br.com.ftt.stockmanager.dto.provider;
 
 import br.com.ftt.stockmanager.model.Provider;
 import lombok.Data;
+import org.modelmapper.ModelMapper;
 
 @Data
 public class ProviderResponseDTO {
@@ -11,13 +12,7 @@ public class ProviderResponseDTO {
     private String address;
 
     public static ProviderResponseDTO parse(Provider providerToParse) {
-        var provider = new ProviderResponseDTO();
-
-        provider.setId(providerToParse.getId());
-        provider.setName(providerToParse.getName());
-        provider.setAddress(providerToParse.getAddress());
-        provider.setCnpj(providerToParse.getCnpj());
-
-        return provider;
+        var modelMapper = new ModelMapper();
+        return modelMapper.map(providerToParse, ProviderResponseDTO.class);
     }
 }

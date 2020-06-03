@@ -59,7 +59,7 @@ public class CategoryController {
 
     @Transactional
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponseDTO> update(@PathVariable Long id, @RequestBody CategoryRequestDTO categoryToUpdate) {
+    public ResponseEntity<CategoryResponseDTO> update(@PathVariable Long id, @RequestBody @Valid CategoryRequestDTO categoryToUpdate) {
         var hasCategory = categoryRepository.findById(id);
 
         if(!hasCategory.isPresent()) {

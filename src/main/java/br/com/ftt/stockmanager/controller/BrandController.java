@@ -59,7 +59,7 @@ public class BrandController {
 
     @Transactional
     @PutMapping("/{id}")
-    public ResponseEntity<BrandResponseDTO> update(@PathVariable Long id, @RequestBody BrandRequestDTO brandToUpdate) {
+    public ResponseEntity<BrandResponseDTO> update(@PathVariable Long id, @RequestBody @Valid BrandRequestDTO brandToUpdate) {
         var hasBrand = brandRepository.findById(id);
 
         if(!hasBrand.isPresent()) {

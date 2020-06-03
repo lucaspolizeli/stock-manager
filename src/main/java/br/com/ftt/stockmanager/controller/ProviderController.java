@@ -53,7 +53,7 @@ public class ProviderController {
         providerRepository.save(provider);
 
         var uri = uriComponentsBuilder
-                .path("/category/{id}")
+                .path("/provider/{id}")
                 .buildAndExpand(provider.getId())
                 .toUri();
         return ResponseEntity.created(uri).body(ProviderResponseDTO.parse(provider));
@@ -61,7 +61,7 @@ public class ProviderController {
 
     @Transactional
     @PutMapping("/{id}")
-    public ResponseEntity<ProviderResponseDTO> update(@PathVariable Long id, @RequestBody ProviderRequestDTO providerToUpdate) {
+    public ResponseEntity<ProviderResponseDTO> update(@PathVariable Long id, @RequestBody @Valid ProviderRequestDTO providerToUpdate) {
         var hasProvider = providerRepository.findById(id);
 
         if(!hasProvider.isPresent()) {

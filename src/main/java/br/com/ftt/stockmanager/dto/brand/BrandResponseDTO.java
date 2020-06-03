@@ -2,6 +2,7 @@ package br.com.ftt.stockmanager.dto.brand;
 
 import br.com.ftt.stockmanager.model.Brand;
 import lombok.Data;
+import org.modelmapper.ModelMapper;
 
 @Data
 public class BrandResponseDTO {
@@ -10,12 +11,7 @@ public class BrandResponseDTO {
     private String description;
 
     public static BrandResponseDTO parse(Brand brandToParse) {
-        var brand = new BrandResponseDTO();
-
-        brand.setId(brandToParse.getId());
-        brand.setName(brandToParse.getName());
-        brand.setDescription(brandToParse.getDescription());
-
-        return brand;
+        var modelMapper = new ModelMapper();
+        return modelMapper.map(brandToParse, BrandResponseDTO.class);
     }
 }
