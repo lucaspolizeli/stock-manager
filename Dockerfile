@@ -1,18 +1,24 @@
-FROM openjdk:11
+FROM openjdk:11 as build
 
-ARG PROFILE
-ARG ADDITIONAL_OPTS
+WORKDIR /app
 
-ENV PROFILE=${PROFILE}
-ENV ADDITIONAL_OPTS=${ADDITIONAL_OPTS}
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
 
-WORKDIR /opt/stock_manager
+RUN chmod +x ./mvnw
+RUN ./mvnw dependency:go-offline -B
 
-COPY /target/stock-manager*.jar stock_manager.jar
+COPY src src
 
-SHELL ["/bin/sh", "-c"]
+RUN ./mvnw package -DskipTests
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-EXPOSE 5005
-EXPOSE 8080
+FROM openjdk:11 as production
+ARG DEPENDENCY=/app/target/dependency
 
-CMD java ${ADDITIONAL_OPTS} -jar stock_manager.jar --spring.profiles.active=${PROFILE}
+COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+
+ENTRYPOINT ["java", "-cp", "app:app/lib/*","br.com.ftt.stockmanager.StockManagerApplication"]
