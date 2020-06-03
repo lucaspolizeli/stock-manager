@@ -65,7 +65,6 @@ public class CategoryController {
         if(!hasCategory.isPresent()) {
             return ResponseEntity.notFound().build();
         }
-
         var category = hasCategory.get();
 
         category.setName(categoryToUpdate.getName());
