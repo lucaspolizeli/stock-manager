@@ -4,10 +4,8 @@ import br.com.ftt.stockmanager.dto.product.ProductDetailsResponseDTO;
 import br.com.ftt.stockmanager.dto.product.ProductRequestDTO;
 import br.com.ftt.stockmanager.dto.product.ProductResponseDTO;
 import br.com.ftt.stockmanager.model.Product;
-import br.com.ftt.stockmanager.repository.BrandRepository;
-import br.com.ftt.stockmanager.repository.CategoryRepository;
-import br.com.ftt.stockmanager.repository.ProductRepository;
-import br.com.ftt.stockmanager.repository.ProviderRepository;
+import br.com.ftt.stockmanager.model.Stock;
+import br.com.ftt.stockmanager.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +30,9 @@ public class ProductController {
 
     @Autowired
     private ProviderRepository providerRepository;
+
+    @Autowired
+    private StockRepository stockRepository;
 
     @GetMapping
     public List<ProductResponseDTO> index() {
@@ -83,6 +84,13 @@ public class ProductController {
 
         productRepository.save(product);
 
+        var stock = new Stock();
+
+        stock.setProduct(product);
+        stock.setAmount(productToInsert.getAmount());
+
+        stockRepository.save(stock);
+
         var uri = uriComponentsBuilder
                 .path("/product/{id}")
                 .buildAndExpand(product.getId())
@@ -92,7 +100,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<ProductDetailsResponseDTO> update(@PathVariable Long id, @RequestBody ProductRequestDTO productToUpdate) {
+    public ResponseEntity<ProductDetailsResponseDTO> update(@PathVariable Long id, @RequestBody @Valid ProductRequestDTO productToUpdate) {
         var hasProduct = productRepository.findById(id);
         if(hasProduct.isEmpty()){
             return ResponseEntity.notFound().build();
@@ -123,7 +131,6 @@ public class ProductController {
         product.setCategory(category.get());
         product.setProvider(provider.get());
 
-
         productRepository.save(product);
 
         return ResponseEntity.ok(ProductDetailsResponseDTO.parse(product));
@@ -137,7 +144,9 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
 
+        stockRepository.deleteByProductId(id);
         productRepository.deleteById(id);
+
         return ResponseEntity.ok().build();
     }
 }

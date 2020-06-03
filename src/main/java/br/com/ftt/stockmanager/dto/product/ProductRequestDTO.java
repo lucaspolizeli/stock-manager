@@ -26,4 +26,7 @@ public class ProductRequestDTO {
 
     @NotNull
     private Long providerId;
+
+    @NotNull
+    private Integer amount;
 }
