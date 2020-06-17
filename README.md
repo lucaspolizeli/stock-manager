@@ -1,57 +1,37 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
+<img src="https://raw.githubusercontent.com/lucaspolizeli/stock-manager/4d2ce4a963e81b1954da85f71021024ee4d4a88b/assets/boxes.svg" width="100px" align="right">
+<img src="https://raw.githubusercontent.com/lucaspolizeli/stock-manager/4d2ce4a963e81b1954da85f71021024ee4d4a88b/assets/boxes.svg" width="100px" align="left">
 
-<div>
+<h2 align="center">
+  Stock Manager
+</h2>
 
-<img src="https://raw.githubusercontent.com/lucaspolizeli/stock-manager/4d2ce4a963e81b1954da85f71021024ee4d4a88b/assets/boxes.svg" width="100px">
-
-</div>
-
-<div style="text-align:center;">
-
-# Stock Manager
-API feita em Java, para gerenciamento de estoque.
-
-</div>
-
-<div style="transform: scaleX(-1)">
-<img src="https://raw.githubusercontent.com/lucaspolizeli/stock-manager/4d2ce4a963e81b1954da85f71021024ee4d4a88b/assets/boxes.svg" width="100px">
-</div>
-
-</div>
+<p align="center">
+API feita em Java para gerenciamento de estoque.
+</p>
 
 
-<div style="display: flex; justify-content: center">
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+---
 
-</div>
+<h4 align="center">
+  <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#desenvolvimento">Desenvolvimento</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#plugins">Plugins</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#como-contribuir">Como contribuir</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#contribuidores">Contribuidores</a>
+</h4>
 
-<div style="display: flex; justify-content: center">
-
-[Tecnologias](#tecnologias) | [Como executar](#como-executar) | [Desenvolvimento](#desenvolvimento) | [Plugins](#plugins) | [Como contribuir](#como-contribuir) | [Contribuidores](#contribuidores) 
-
-</div>
 
 ### Tecnologias
 Tecnologias utilizadas no projeto:
-
-<div style="display: flex; justify-content: space-between; align-items: flex-end;">
-<div>
-
+<img src="https://raw.githubusercontent.com/lucaspolizeli/stock-manager/4d2ce4a963e81b1954da85f71021024ee4d4a88b/assets/box.svg" width="100px" align="right">
 - [Java Persistence API (JPA)](https://pt.wikipedia.org/wiki/Java_Persistence_API)
 - [Hibernate](https://hibernate.org/)
 - [Lombok](https://projectlombok.org/)
 - [Modelmapper](http://modelmapper.org/)
 - [MySQL](https://www.mysql.com/)
 - [Docker](https://www.docker.com/)
-
-</div>
-
-<div>
-<img src="https://raw.githubusercontent.com/lucaspolizeli/stock-manager/4d2ce4a963e81b1954da85f71021024ee4d4a88b/assets/box.svg" width="100px">
-</div>
-
-</div>
 
 
 
@@ -70,30 +50,20 @@ docker-compose up --build
 ```
 
 
-
-
-<div style="display: flex; justify-content: space-between; align-items: flex-end;">
-
-<div>
-
 ### Desenvolvimento
 
 Usamos o [InteliJ](https://www.jetbrains.com/pt-br/idea/) no desenvolvimento, pois é a IDE que temos mais familiaridade, mas caso queira [contribuir](#como-contribuir) sinta-se livre para utilizar o que lhe for mais conveniente.
 
 Caso o InteliJ não instale todos os pacotes de dependência assim que você abrir a aplicação ou estiver utilizando outra IDE use os comando abaixo.
 
-</div>
-
-<div>
-<img src="https://raw.githubusercontent.com/lucaspolizeli/stock-manager/4d2ce4a963e81b1954da85f71021024ee4d4a88b/assets/pallet.svg" width="300px">
-</div>
-
-</div>
-
 ```sh
 $ mvn clean
 $ mvn install
 ```
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/lucaspolizeli/stock-manager/4d2ce4a963e81b1954da85f71021024ee4d4a88b/assets/pallet.svg" width="200px">
+</p>
 
 A instalação será útil apenas em tempo de desenvolvimento, pois como utilizamos o Docker caso queira executar o projeto basta rodar o comando de [execução](#como-executar) citado acima.
 
@@ -123,7 +93,7 @@ $ git commit -m "Type here a quick description of your feature"
 ```
 
 4. Atualize o projeto
-- Esse passo é muito útil pois caso haja atualziações você poderá consertar os erros gerados
+*Esse passo é muito útil pois caso haja atualziações você poderá consertar os erros gerados*
 ```sh
 $ git pull origin master
 ```
@@ -135,35 +105,18 @@ $ git push
 
 ### Contribuidores
 
-<div style="display: flex; justify-content: space-around; align-items: center;">
+<h4 align="center">
+  <a href="https://github.com/lucaspolizeli">Lucas Polizeli</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/devbarreto">Victor Barreto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/kiqvinicius">Kaique Vinicius</a>
+</h4>
 
-<div style="text-align:center;">
-
-[Lucas Polizeli](https://github.com/lucaspolizeli)
-
-</div>
-
-<div style="text-align:center;">
-
-[Victor Barreto](https://github.com/devbarreto)
-
-</div>
-
-<div style="text-align:center;">
-
-[Kaique Vinícius](https://github.com/kiqvinicius)
-
-</div>
-
-</div>
-
-<div style="text-align: center;">
-
+<p align="center">
 <img src="https://raw.githubusercontent.com/lucaspolizeli/stock-manager/4d2ce4a963e81b1954da85f71021024ee4d4a88b/assets/factory.svg" width="400px">
+</p>
 
 ___
-Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
-</div>
+Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
 
