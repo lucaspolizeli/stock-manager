@@ -16,6 +16,7 @@ docker/
 
 ### IntelliJ IDEA ###
 .idea
+/idea/
 *.iws
 *.iml
 *.ipr
@@ -27,9 +28,3 @@ docker/
 /nbdist/
 /.nb-gradle/
 build/
-
-### VS Code ###
-.vscode/
-
-### InteliJ ###
-/idea/
