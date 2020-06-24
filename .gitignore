@@ -28,3 +28,7 @@ docker/
 /nbdist/
 /.nb-gradle/
 build/
+
+
+
+web/package-lock.json

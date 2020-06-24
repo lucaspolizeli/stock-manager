@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import routesPath from "../../contants/routesPath";
+import HeadingContainer from "../../components/HeadingContainer";
 
 const StockManager = () => {
   return (
-    <div>
-      <h1>Stock Manager</h1>
+    <HeadingContainer heading="Stock Manager" centerHeading>
+      <p>Aqui ficarão listadas suas opções de gerenciamento. </p>
       <Link to={routesPath.Home}>Voltar para home</Link>
-    </div>
+    </HeadingContainer>
   );
 };
 
