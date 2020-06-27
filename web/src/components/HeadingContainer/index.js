@@ -2,14 +2,19 @@ import React from "react";
 import CustomHeading, { CustomContainer } from "./style";
 import colorPallet from "../../contants/colorPallet";
 
-const Container = ({ heading, centerHeading, children }) => {
+const Container = ({
+  heading,
+  centerHeading,
+  margin = "8vh auto 0",
+  children,
+}) => {
   return (
-    // <CustomContainer maxSize={maxSize} minSize={minSize} padding={padding}>
-    <CustomContainer padding="none" borderRadius="10px" margin="48px auto 0">
+    <CustomContainer padding="none" borderRadius="10px" margin={margin}>
       {heading && (
         <CustomContainer
           padding="none"
           margin="none"
+          border="none"
           borderRadius="10px 10px 0px 0px"
           centerHeading={centerHeading}
           backgroundColor={colorPallet.blue.high}
@@ -17,7 +22,7 @@ const Container = ({ heading, centerHeading, children }) => {
           <CustomHeading>{heading}</CustomHeading>
         </CustomContainer>
       )}
-      <CustomContainer borderRadius="0px 0px 10px 10px">
+      <CustomContainer borderRadius="0px 0px 10px 10px" border="none">
         {children}
       </CustomContainer>
     </CustomContainer>

@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import colorPallet from "../../contants/colorPallet";
 
 const defaultMinWidth = "300px";
 const defaultMaxWidth = "900px";
 const defaultPadding = "16px 32px";
 const defaultHeadingFontSize = "48px";
+const defaultBorder = "1px solid #fff";
 const defaultBorderRadius = "10px";
 const defaultMargin = "8px";
 const defaultTextAlign = "left";
@@ -23,8 +23,9 @@ export const CustomContainer = styled.div`
   text-align: ${(props) => (props.centerHeading ? "center" : defaultTextAlign)};
   min-width: ${(props) => props.minWidht || defaultMinWidth};
   max-width: ${(props) => props.maxWidht || defaultMaxWidth};
+  border: ${(props) => props.border || defaultBorder};
   border-radius: ${(props) => props.borderRadius || defaultBorderRadius};
   padding: ${(props) => props.padding || defaultPadding};
   margin: ${(props) => props.margin || defaultMargin};
-  background: ${(props) => props.backgroundColor || colorPallet.blue.lighter};
+  background: ${(props) => props.backgroundColor || "#fff"};
 `;
