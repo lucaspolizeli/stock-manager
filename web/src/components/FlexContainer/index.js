@@ -4,29 +4,31 @@ import CustomFlexContainer from "./style";
 const FlexContainer = ({
   alignItems,
   justifyContent,
+  direction,
   minWidht,
   maxWidht,
-  border,
   borderRadius,
-  padding,
-  margin,
-  backgroundColor,
+  border = "none",
+  margin = "none",
+  padding = "none",
+  backgroundColor = "transparent",
   children,
 }) => {
-  const containerProps = {
-    alignItems,
-    justifyContent,
-    minWidht,
-    maxWidht,
-    border,
-    borderRadius,
-    padding,
-    margin,
-    backgroundColor,
-  };
-
   return (
-    <CustomFlexContainer {...containerProps}>{children}</CustomFlexContainer>
+    <CustomFlexContainer
+      alignItems={alignItems}
+      justifyContent={justifyContent}
+      direction={direction}
+      minWidht={minWidht}
+      maxWidht={maxWidht}
+      border={border}
+      borderRadius={borderRadius}
+      padding={padding}
+      margin={margin}
+      backgroundColor={backgroundColor}
+    >
+      {children}
+    </CustomFlexContainer>
   );
 };
 

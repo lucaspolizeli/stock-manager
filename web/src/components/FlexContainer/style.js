@@ -8,11 +8,13 @@ const defaultBorderRadius = "10px";
 const defaultMargin = "0px";
 const defaultAlignItems = "center";
 const defaultJustifyContent = "space-between";
+const defaultDirection = "row";
 
 const CustomFlexContainer = styled.div`
   display: flex;
   align-items: ${(props) => props.alignItems || defaultAlignItems};
   justify-content: ${(props) => props.justifyContent || defaultJustifyContent};
+  flex-direction: ${(props) => props.direction || defaultDirection};
   min-width: ${(props) => props.minWidht || defaultMinWidth};
   max-width: ${(props) => props.maxWidht || defaultMaxWidth};
   border: ${(props) => props.border || defaultBorder};
