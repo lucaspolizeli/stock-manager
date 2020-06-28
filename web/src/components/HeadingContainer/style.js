@@ -10,8 +10,9 @@ const defaultMargin = "8px";
 const defaultTextAlign = "left";
 
 const CustomHeading = styled.h1`
-  color: #fff;
   margin: 0px;
+  color: #fff;
+  letter-spacing: 4px;
   min-width: ${(props) => props.minWidht || defaultMinWidth};
   max-width: ${(props) => props.maxWidht || defaultMaxWidth};
   padding: ${(props) => props.padding || defaultPadding};
